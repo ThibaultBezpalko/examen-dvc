@@ -56,7 +56,7 @@ def main(repo_path):
             "train": rmse_train
         }
         }
-    accuracy_path = repo_path / "./metrics/accuracy.json"
+    accuracy_path = repo_path / "./metrics/metrics.json"
     accuracy_path.write_text(json.dumps(metrics))
 
 if __name__ == "__main__":
