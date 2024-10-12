@@ -19,13 +19,13 @@ def main(input_filepath, output_filepath):
 
     input_filepath = click.prompt('Enter the file path for the input data', type=click.Path(exists=True))
     input_filepath_silica = f"{input_filepath}/raw.csv"
-    output_filepath = click.prompt('Enter the file path for the output preprocessed data (e.g., output/preprocessed_data.csv)', type=click.Path())
+    output_filepath = click.prompt('Enter the file path for the output preprocessed data (e.g., output/processed_data.csv)', type=click.Path())
 
     process_data(input_filepath_silica, output_filepath)
 
 def process_data(input_filepath_silica, output_filepath):
     # Import datasets
-    df_silica = import_dataset(input_filepath_silica, sep=";")
+    df_silica = import_dataset(input_filepath_silica, sep=",")
 
     # Split data into training and testing sets
     X_train, X_test, y_train, y_test = split_data(df_silica)
