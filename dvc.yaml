@@ -34,7 +34,7 @@ stages:
     - models/best_params.pkl
     - src/models/train_model.py
     outs:
-    - models/trained_model.joblib
+    - models/trained_model.pkl
   evaluation:
     cmd: python src/models/evaluate_model.py
     deps:
@@ -42,7 +42,7 @@ stages:
     - data/processed_data/X_train_scaled.csv
     - data/processed_data/y_test.csv
     - data/processed_data/y_train.csv
-    - models/trained_model.joblib
+    - models/trained_model.pkl
     - src/models/evaluate_model.py
     outs:
     - data/predicted_data/predictions.csv

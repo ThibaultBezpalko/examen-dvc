@@ -89,13 +89,13 @@ stages:
       size: 112
     - path: src/models/train_model.py
       hash: md5
-      md5: 4eace97c3db2478b77ceaaf48112e2ff
+      md5: 8c4c0f7ee199300dccec9a4ae8b3c43f
       size: 778
     outs:
-    - path: models/trained_model.joblib
+    - path: models/trained_model.pkl
       hash: md5
-      md5: d06e70500546c3f302b16ba58d71be9b
-      size: 5016705
+      md5: 97e50d27e53055f59f23665a9f73b11b
+      size: 4997553
   evaluation:
     cmd: python src/models/evaluate_model.py
     deps:
@@ -115,20 +115,20 @@ stages:
       hash: md5
       md5: 4f1097f0b9053f0a94904c047541877f
       size: 22710
-    - path: models/trained_model.joblib
+    - path: models/trained_model.pkl
       hash: md5
-      md5: d06e70500546c3f302b16ba58d71be9b
-      size: 5016705
+      md5: 97e50d27e53055f59f23665a9f73b11b
+      size: 4997553
     - path: src/models/evaluate_model.py
       hash: md5
-      md5: 410aaa60271e454254c0f810ddf8c089
-      size: 2525
+      md5: b7dbcd240ea5e2e165bef34600c3de8a
+      size: 2522
     outs:
     - path: data/predicted_data/predictions.csv
       hash: md5
-      md5: f3ebb532f5be8b8918138819fadcf532
-      size: 10154
+      md5: 72557a2e374a7138be5c52c68deff4da
+      size: 10176
     - path: metrics/scores.json
       hash: md5
-      md5: 47321c26f916c1bed1dbb792cf88f002
-      size: 314
+      md5: 3189b82d2303ee67dee2e5f60b7d01b3
+      size: 313

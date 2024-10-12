@@ -21,7 +21,7 @@ y_train = np.ravel(y_train)
 def main(repo_path):
     # Load the trained model
     print("Loading trained model...")
-    model = load(repo_path / "./models/trained_model.joblib")
+    model = load(repo_path / "./models/trained_model.pkl")
 
     # Predictions
     print("Predicting...")
