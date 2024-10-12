@@ -1,2 +1,5 @@
 /venv
 /clean_data.csv
+/env
+/data/raw_data
+/data/processed_data
