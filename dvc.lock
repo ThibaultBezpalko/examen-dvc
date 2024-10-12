@@ -18,3 +18,89 @@ stages:
       md5: ea5e20a3ece6ba76477bdc8f954ad90b.dir
       size: 294499
       nfiles: 4
+  normalize:
+    cmd: python src/data/minmax_scaling.py
+    deps:
+    - path: data/processed_data
+      hash: md5
+      md5: ea5e20a3ece6ba76477bdc8f954ad90b.dir
+      size: 294499
+      nfiles: 4
+    - path: src/data/minmax_scaling.py
+      hash: md5
+      md5: f6813d573fdae551c04b3c19964c7fb3
+      size: 2333
+    outs:
+    - path: data/scaled_data
+      hash: md5
+      md5: ddefedf8b27a0b4f5aa407ee54c52c7c.dir
+      size: 278077
+      nfiles: 2
+  gridsearch:
+    cmd: python src/models/gridsearch.py
+    deps:
+    - path: data/processed_data/
+      hash: md5
+      md5: ea5e20a3ece6ba76477bdc8f954ad90b.dir
+      size: 294499
+      nfiles: 4
+    - path: data/scaled_data/
+      hash: md5
+      md5: ddefedf8b27a0b4f5aa407ee54c52c7c.dir
+      size: 278077
+      nfiles: 2
+    - path: src/models/gridsearch.py
+      hash: md5
+      md5: 51085d6a16c8ff9986ae5fc3e7b68243
+      size: 2462
+    outs:
+    - path: models/best_params.pkl
+      hash: md5
+      md5: aa919feca57940999b0e2f18911424d5
+      size: 112
+  train:
+    cmd: python src/models/train_model.py
+    deps:
+    - path: data/processed_data/y_train.csv
+      hash: md5
+      md5: 4f1097f0b9053f0a94904c047541877f
+      size: 22710
+    - path: data/scaled_data/X_train_scaled.csv
+      hash: md5
+      md5: de6634b3670e0421231dd8d8914e7977
+      size: 194337
+    - path: src/models/train_model.py
+      hash: md5
+      md5: 4eace97c3db2478b77ceaaf48112e2ff
+      size: 778
+    outs:
+    - path: models/trained_model.joblib
+      hash: md5
+      md5: 93453571aa0d3bb824b474d754eb3362
+      size: 4987761
+  evaluation:
+    cmd: python src/models/evaluate_model.py
+    deps:
+    - path: data/processed_data/
+      hash: md5
+      md5: ea5e20a3ece6ba76477bdc8f954ad90b.dir
+      size: 294499
+      nfiles: 4
+    - path: data/scaled_data/
+      hash: md5
+      md5: ddefedf8b27a0b4f5aa407ee54c52c7c.dir
+      size: 278077
+      nfiles: 2
+    - path: models/trained_model.joblib
+      hash: md5
+      md5: 93453571aa0d3bb824b474d754eb3362
+      size: 4987761
+    - path: src/models/evaluate_model.py
+      hash: md5
+      md5: 8eab70d4ca50b50b2898432eb39942ee
+      size: 1933
+    outs:
+    - path: metrics/metrics.json
+      hash: md5
+      md5: 9e87aeb04c121fd546eda348e9975563
+      size: 314

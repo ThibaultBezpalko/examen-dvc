@@ -9,7 +9,7 @@ print(f"Jpblib version: {joblib.__version__}")
 
 # Loading datasets
 print("Loading training datasets")
-X_train = pd.read_csv('./data/processed_data/X_train_scaled.csv')
+X_train = pd.read_csv('./data/scaled_data/X_train_scaled.csv')
 y_train = pd.read_csv('./data/processed_data/y_train.csv')
 y_train = np.ravel(y_train)
 

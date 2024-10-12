@@ -4,13 +4,12 @@ from pathlib import Path
 import logging
 import os
 from sklearn.preprocessing import MinMaxScaler
-#sys.path.append('???')
-from check_structure import check_existing_file
+from check_structure import check_existing_file, check_existing_folder
 
 
 def main():
     """ Runs data processing scripts to turn raw data from (../raw_data) into
-        cleaned data ready to be analyzed (saved in../preprocessed_data).
+        scaled data ready to be analyzed (saved in../scaled_data).
     """
     logger = logging.getLogger(__name__)
     logger.info('making final scaled data set from raw data')
@@ -21,7 +20,7 @@ def scale_data():
 
     input_filepath_X_train = "./data/processed_data/X_train.csv"
     input_filepath_X_test = "./data/processed_data/X_test.csv"
-    output_filepath = "./data/processed_data/"
+    output_filepath = "./data/scaled_data/"
 
     # Import datasets
     X_train = import_dataset(input_filepath_X_train, sep=",")
@@ -34,12 +33,19 @@ def scale_data():
     X_test_scaled = scaler.transform(X_test)
     X_test_scaled_df = pd.DataFrame(X_test_scaled, columns=X_test.columns)
 
+    # Create folder if necessary
+    create_folder_if_necessary(output_filepath)
 
     # Save dataframes to their respective output file paths
     save_dataframes(X_train_scaled_df, X_test_scaled_df, output_filepath)
 
 def import_dataset(file_path, **kwargs):
     return pd.read_csv(file_path, **kwargs)
+
+def create_folder_if_necessary(output_folderpath):
+    # Create folder if necessary
+    if check_existing_folder(output_folderpath):
+        os.makedirs(output_folderpath)
 
 def save_dataframes(X_train_scaled_df, X_test_scaled_df, output_folderpath):
     # Save dataframes to their respective output file paths

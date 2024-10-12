@@ -7,10 +7,10 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 # Loading datasets
 print("Loading training datasets")
-X_test = pd.read_csv('data/processed_data/X_test_scaled.csv')
+X_test = pd.read_csv('data/scaled_data/X_test_scaled.csv')
 y_test = pd.read_csv('data/processed_data/y_test.csv')
 y_test = np.ravel(y_test)
-X_train = pd.read_csv('data/processed_data/X_train_scaled.csv')
+X_train = pd.read_csv('data/scaled_data/X_train_scaled.csv')
 y_train = pd.read_csv('data/processed_data/y_train.csv')
 y_train = np.ravel(y_train)
 

@@ -12,8 +12,8 @@ from check_structure import check_existing_file
 
 
 def main():
-    """ Runs data processing scripts to turn raw data from (../raw_data) into
-        cleaned data ready to be analyzed (saved in../preprocessed_data).
+    """ Runs data processing scripts to analyze data 
+    from (../processed_data and ../ scaled_data) 
     """
     logger = logging.getLogger(__name__)
     logger.info('Looking for best parameters  from scaled data')
@@ -23,7 +23,7 @@ def main():
 def gridsearching():
 
     # Setting folders and files
-    input_filepath_X_train = "./data/processed_data/X_train_scaled.csv"
+    input_filepath_X_train = "./data/scaled_data/X_train_scaled.csv"
     input_filepath_y_train = "./data/processed_data/y_train.csv"
     output_folderpath = "./models/"
 
