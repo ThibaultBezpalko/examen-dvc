@@ -1,0 +1,8 @@
+stages:
+  split:
+    cmd: python src/data/make_dataset.py
+    deps:
+    - data/raw_data
+    - src/data/make_dataset.py
+    outs:
+    - data/processed_data
