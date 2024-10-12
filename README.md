@@ -20,6 +20,57 @@ Vous devez dans un premier temps *Fork* le repo et puis le cloner pour travaille
 Vous pouvez télécharger les données à travers le lien suivant : https://datascientest-mlops.s3.eu-west-1.amazonaws.com/mlops_dvc_fr/raw.csv.
 
 
+## Etape 0 : 
+Créer un environnement virtuel : 
+```
+virtualenv env
+source env/bin/activate
+pip install dvc
+```
+
+Créer un fichier requirements.txt à la racine du dossier associé au repo avec les dépendances suivantes : 
+```
+# local package
+-e .
+
+# external requirements
+dvc[s3]
+click
+Sphinx
+coverage
+#awscli>=1.29.0
+flake8
+pandas
+#logging
+numpy 
+pathlib 
+scikit-learn
+imbalanced-learn
+joblib
+#sys
+#json
+```
+
+Créer un fichier setup.py pour permettre l'installation des dépendances du fichier requirements.txt :
+```
+from setuptools import find_packages, setup
+
+setup(
+    name='src',
+    packages=find_packages(),
+    version='0.1.0',
+    description='This project is a starting Pack for MLOps project. It s not perfect so feel free to make some modifications on it.',
+    author='DataScientest',
+    license='MIT',
+)
+```
+
+Installer les dépendances du fichier requirements.txt :
+```
+pip install -r ./requirements.txt
+```
+
+
 ## Etape 1 : création des scripts
 
 ### Import des données 

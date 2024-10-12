@@ -41,8 +41,8 @@ def import_dataset(file_path, **kwargs):
 
 def split_data(df):
     # Split data into training and testing sets
-    target = df['silica_concentrate ']
-    feats = df.drop(['silica_concentrate '], axis=1)
+    target = df['silica_concentrate']
+    feats = df.drop(['silica_concentrate'], axis=1)
     X_train, X_test, y_train, y_test = train_test_split(feats, target, test_size=0.3, random_state=42)
     return X_train, X_test, y_train, y_test
 
