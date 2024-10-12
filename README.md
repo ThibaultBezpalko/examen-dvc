@@ -132,11 +132,6 @@ dvc stage add -n evaluation -d src/models/evaluate_model.py -d data/processed_da
 ```
 
 
-
-
-
-
-
 ## Etape 4 : rendu
 Pour rendre l'examen sur la plateforme, envoyer un .zip contenant un .md avec son nom, prénom, adresse mail et le lien vers le dépôt DagsHub.  
 Partager le dépôt avec https://dagshub.com/licence.pedago en le mettant comme collaborateur avec des droits de lecture seulement.   
