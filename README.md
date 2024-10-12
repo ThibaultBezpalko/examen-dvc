@@ -23,25 +23,20 @@ Vous pouvez télécharger les données à travers le lien suivant : https://data
 ## Etape 1 : création des scripts
 
 ### Import des données 
-On réutilise les fichiers check_structure.py et import_raw_data.py. 
-
-On modifie dans ce dernier le nom du dossier pré-existant (./data/raw_data), des fichiers (raw.csv) et l'adresse du storage s3.
-
+On réutilise les fichiers check_structure.py et import_raw_data.py.  
+On modifie dans ce dernier le nom du dossier pré-existant (./data/raw_data), des fichiers (raw.csv) et l'adresse du storage s3.  
 Cela importe normalement le fichier "raw.csv", sur lequel on va travailler, dans le dossier existant "./data/raw_data" depuis le AWS S3.
 
 ### Split des données
-On réutilise le fichier make_dataset.py. 
-
+On réutilise le fichier make_dataset.py.  
 On conserve l'opération de train_test_split et l'écriture des fichiers dans le dossier existant "./data/processed_data".
 
 ### Normalisation des données 
-Les données sont dans des échelles très variées donc une normalisation est nécessaire. 
-
+Les données sont dans des échelles très variées donc une normalisation est nécessaire.  
 En sortie, ce script créera deux nouveaux datasets : (X_train_scaled, X_test_scaled) que l'on sauvegarde également dans "./data/processed_data".
 
 ### Parameters tuning
-On exécute une GridSearch des meilleurs paramètres à utiliser pour la modélisation sur un modèle de regression choisi au préalable. 
-
+On exécute une GridSearch des meilleurs paramètres à utiliser pour la modélisation sur un modèle de regression choisi au préalable.  
 À l'issu de ce script, les meilleurs paramètres sont sous forme de fichier .pkl que l'on sauvegarde dans le dossier "./models".
 
 ### Entraînement du modèle
