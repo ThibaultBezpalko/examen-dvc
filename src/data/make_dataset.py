@@ -18,9 +18,9 @@ def main(input_filepath, output_filepath):
     logger = logging.getLogger(__name__)
     logger.info('making split data set from raw data')
 
-    input_filepath = click.prompt('Enter the file path for the input data', type=click.Path(exists=True))
+    input_filepath = click.prompt('Enter the path for the input data', type=click.Path(exists=True))
     input_filepath_silica = f"{input_filepath}/raw.csv"
-    output_filepath = click.prompt('Enter the file path for the output preprocessed data (e.g., output/processed_data.csv)', type=click.Path())
+    output_filepath = click.prompt('Enter the path for the output preprocessed data (e.g., data/processed_data/)', type=click.Path())
 
     process_data(input_filepath_silica, output_filepath)
 

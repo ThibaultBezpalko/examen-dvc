@@ -3,15 +3,19 @@ import numpy as np
 from joblib import load
 import json
 from pathlib import Path
+import os
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import sys
+sys.path.append('./src/data/')
+from check_structure import check_existing_file, check_existing_folder
 
 # Loading datasets
 print("Loading training datasets")
-X_test = pd.read_csv('data/scaled_data/X_test_scaled.csv')
-y_test = pd.read_csv('data/processed_data/y_test.csv')
+X_test = pd.read_csv('./data/processed_data/X_test_scaled.csv')
+y_test = pd.read_csv('./data/processed_data/y_test.csv')
 y_test = np.ravel(y_test)
-X_train = pd.read_csv('data/scaled_data/X_train_scaled.csv')
-y_train = pd.read_csv('data/processed_data/y_train.csv')
+X_train = pd.read_csv('./data/processed_data/X_train_scaled.csv')
+y_train = pd.read_csv('./data/processed_data/y_train.csv')
 y_train = np.ravel(y_train)
 
 def main(repo_path):
@@ -23,6 +27,17 @@ def main(repo_path):
     print("Predicting...")
     y_test_pred = model.predict(X_test)
     y_train_pred = model.predict(X_train)
+
+    # Create folder if necessary
+    output_folderpath = "./data/predicted_data/"
+    if check_existing_folder(output_folderpath):
+        os.makedirs(output_folderpath)
+
+    # Save predictions
+    output_filepath = os.path.join(output_folderpath, 'predictions.csv')
+    if check_existing_file(output_filepath):
+        y_test_pred_df = pd.DataFrame(y_test_pred, columns=['silica_concentrate'])
+        y_test_pred_df.to_csv(output_filepath, index=False)
 
     # Calcul des métriques
     print("Evaluating...")
@@ -56,7 +71,7 @@ def main(repo_path):
             "train": rmse_train
         }
         }
-    accuracy_path = repo_path / "./metrics/metrics.json"
+    accuracy_path = repo_path / "./metrics/scores.json"
     accuracy_path.write_text(json.dumps(metrics))
 
 if __name__ == "__main__":

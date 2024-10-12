@@ -20,7 +20,7 @@ def scale_data():
 
     input_filepath_X_train = "./data/processed_data/X_train.csv"
     input_filepath_X_test = "./data/processed_data/X_test.csv"
-    output_filepath = "./data/scaled_data/"
+    output_filepath = "./data/processed_data/"
 
     # Import datasets
     X_train = import_dataset(input_filepath_X_train, sep=",")

@@ -23,7 +23,7 @@ def main():
 def gridsearching():
 
     # Setting folders and files
-    input_filepath_X_train = "./data/scaled_data/X_train_scaled.csv"
+    input_filepath_X_train = "./data/processed_data/X_train_scaled.csv"
     input_filepath_y_train = "./data/processed_data/y_train.csv"
     output_folderpath = "./models/"
 
