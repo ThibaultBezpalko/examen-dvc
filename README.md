@@ -106,6 +106,37 @@ Faire de DagsHub l'emplacement distant pour le suivi de la donnée sans oublier 
 ## Etape 3 : pipeline DVC
 À l'aide des commandes DVC vues dans le cours, mettre en place une pipeline qui reproduit le workflow du modèle.  
 
+### Split des données
+```
+dvc stage add -n split -d src/data/make_dataset.py -d data/raw_data/raw.csv -o data/processed_data/X_test.csv -o data/processed_data/X_train.csv -o data/processed_data/y_test.csv -o data/processed_data/y_train.csv python src/data/make_dataset.py
+```
+
+### Normalisation des données 
+```
+dvc stage add -n normalize -d src/data/minmax_scaling.py -d data/processed_data/X_train.csv -d data/processed_data/X_test.csv -o data/processed_data/X_train_scaled.csv -o data/processed_data/X_test_scaled.csv python src/data/minmax_scaling.py
+```
+
+### Parameters tuning
+```
+dvc stage add -n gridsearch -d src/models/gridsearch.py -d data/processed_data/X_train_scaled.csv -d data/processed_data/y_train.csv -o models/best_params.pkl python src/models/gridsearch.py
+```
+
+### Entraînement du modèle
+```
+dvc stage add -n train -d src/models/train_model.py -d data/processed_data/X_train_scaled.csv -d data/processed_data/y_train.csv -d models/best_params.pkl -o models/trained_model.pkl python src/models/train_model.py
+```
+
+### Evaluation du modèle 
+```
+dvc stage add -n evaluation -d src/models/evaluate_model.py -d data/processed_data/X_test_scaled.csv -d data/processed_data/X_train_scaled.csv -d data/processed_data/y_train.csv -d data/processed_data/y_test.csv -d models/trained_model.pkl -o data/predicted_data/predictions.csv -M metrics/scores.json python src/models/evaluate_model.py
+```
+
+
+
+
+
+
+
 ## Etape 4 : rendu
 Pour rendre l'examen sur la plateforme, envoyer un .zip contenant un .md avec son nom, prénom, adresse mail et le lien vers le dépôt DagsHub.  
 Partager le dépôt avec https://dagshub.com/licence.pedago en le mettant comme collaborateur avec des droits de lecture seulement.   
